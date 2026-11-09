@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>번역 교정 팀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <h1>🐾 번역 교정 팀</h1>
+  <p class="부제">네 마리가 바통을 넘기며 번역을 다듬습니다</p>
+</header>
+
+<section class="조작판">
+  <input id="입력" type="text" placeholder="번역할 한국어 표현 (예: 내로남불)" autocomplete="off" />
+  <button id="시작버튼" class="주요">회의 시작</button>
+  <button id="연습버튼" class="보조" title="AI 를 부르지 않습니다. 0원.">연습 모드</button>
+</section>
+
+<p id="안내" class="안내"></p>
+
+<!-- ───── 사무실 ───── -->
+<section class="사무실틀">
+  <div class="사무실" id="사무실">
+
+    <svg class="방" viewBox="0 0 1000 640" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <!-- 책상 하나 (원점 = 상판 가운데). 소품은 책상마다 따로 올립니다 -->
+        <g id="책상">
+          <polygon points="0,-44 88,0 0,44 -88,0" class="상판"/>
+          <polygon points="-88,0 0,44 0,62 -88,18" class="책상옆1"/>
+          <polygon points="88,0 0,44 0,62 88,18" class="책상옆2"/>
+          <!-- 모니터 -->
+          <g transform="translate(6,-30)">
+            <polygon points="-4,0 4,0 4,-12 -4,-12" class="모니터목"/>
+            <g transform="skewY(-26)">
+              <rect x="-40" y="-62" width="80" height="48" rx="5" class="모니터"/>
+              <rect x="-34" y="-56" width="68" height="36" rx="3" class="화면"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- 화분 -->
+        <g id="화분">
+          <polygon points="-16,0 16,0 12,26 -12,26" class="화분통"/>
+          <ellipse cx="0" cy="0" rx="16" ry="6" class="화분위"/>
+          <path d="M0,0 C -22,-16 -20,-44 -2,-52" class="잎"/>
+          <path d="M0,0 C  20,-20  16,-48  2,-56" class="잎"/>
+          <path d="M0,0 C  -4,-26   6,-40  0,-46" class="잎"/>
+        </g>
+
+        <!-- 📚 책 (부엉이 책상) -->
+        <g id="책">
+          <polygon points="0,-9 26,4 0,17 -26,4" class="책1"/>
+          <polygon points="-26,4 0,17 0,22 -26,9" class="책1옆"/>
+          <polygon points="26,4 0,17 0,22 26,9" class="책1옆"/>
+          <polygon points="0,-20 24,-8 0,4 -24,-8" class="책2"/>
+          <polygon points="-24,-8 0,4 0,9 -24,-3" class="책2옆"/>
+          <polygon points="24,-8 0,4 0,9 24,-3" class="책2옆"/>
+          <polygon points="0,-30 20,-20 0,-10 -20,-20" class="책3"/>
+          <polygon points="-20,-20 0,-10 0,-6 -20,-16" class="책3옆"/>
+          <polygon points="20,-20 0,-10 0,-6 20,-16" class="책3옆"/>
+        </g>
+
+        <!-- 🐟 츄르 (고양이 책상) -->
+        <g id="츄르">
+          <g transform="rotate(-18)">
+            <rect x="-26" y="-7" width="52" height="14" rx="7" class="츄르몸"/>
+            <polygon points="26,-7 36,-3 36,3 26,7" class="츄르끝"/>
+            <polygon points="-26,-7 -34,-4 -34,4 -26,7" class="츄르끝"/>
+            <rect x="-14" y="-4" width="24" height="8" rx="4" class="츄르띠"/>
+          </g>
+        </g>
+
+        <!-- 🎤 마이크 (앵무새 책상) -->
+        <g id="마이크">
+          <ellipse cx="0" cy="8" rx="16" ry="8" class="마이크받침"/>
+          <rect x="-2.5" y="-20" width="5" height="28" rx="2.5" class="마이크대"/>
+          <ellipse cx="0" cy="-26" rx="11" ry="13" class="마이크머리"/>
+          <line x1="-7" y1="-31" x2="7" y2="-31" class="마이크줄"/>
+          <line x1="-8" y1="-26" x2="8" y2="-26" class="마이크줄"/>
+          <line x1="-7" y1="-21" x2="7" y2="-21" class="마이크줄"/>
+        </g>
+
+        <!-- 🧄 마늘 (곰 책상) -->
+        <g id="마늘">
+          <path d="M0,10 C -18,10 -17,-10 0,-20 C 17,-10 18,10 0,10 Z" class="마늘몸"/>
+          <path d="M0,-20 C -7,-8 -7,4 0,10" class="마늘금"/>
+          <path d="M0,-20 C  7,-8  7,4 0,10" class="마늘금"/>
+          <path d="M0,-20 C 2,-28 6,-32 4,-36" class="마늘싹"/>
+          <ellipse cx="0" cy="10" rx="18" ry="5" class="마늘밑"/>
+        </g>
+
+        <!-- 🔥 난로 -->
+        <g id="난로">
+          <!-- 연통 -->
+          <rect x="-7" y="-104" width="14" height="52" class="연통"/>
+          <ellipse cx="0" cy="-104" rx="7" ry="3.5" class="연통위"/>
+          <!-- 몸통 -->
+          <rect x="-30" y="-58" width="60" height="58" class="난로몸"/>
+          <ellipse cx="0" cy="-58" rx="30" ry="14" class="난로위"/>
+          <ellipse cx="0" cy="0" rx="30" ry="14" class="난로몸"/>
+          <!-- 주전자 -->
+          <g transform="translate(-9,-62)">
+            <ellipse cx="0" cy="0" rx="12" ry="6" class="주전자"/>
+            <rect x="-12" y="-11" width="24" height="11" class="주전자"/>
+            <ellipse cx="0" cy="-11" rx="12" ry="6" class="주전자위"/>
+            <path d="M12,-8 C 19,-9 20,-3 17,0" class="주전자주둥이"/>
+          </g>
+          <!-- 아궁이 문 -->
+          <rect x="-17" y="-40" width="34" height="26" rx="4" class="아궁이"/>
+          <!-- 불꽃 -->
+          <g class="불무리">
+            <path d="M0,-17 C -9,-24 -8,-33 0,-38 C 8,-33 9,-24 0,-17 Z" class="불꽃 겉불"/>
+            <path d="M0,-19 C -5,-24 -4,-30 0,-33 C 4,-30 5,-24 0,-19 Z" class="불꽃 속불"/>
+          </g>
+          <!-- 다리 -->
+          <rect x="-22" y="4" width="6" height="10" rx="3" class="난로다리"/>
+          <rect x="16"  y="4" width="6" height="10" rx="3" class="난로다리"/>
+        </g>
+      </defs>
+
+      <!-- 뒷벽 두 장 -->
+      <polygon points="60,380 500,160 500,30 60,250" class="벽왼"/>
+      <polygon points="940,380 500,160 500,30 940,250" class="벽오"/>
+
+      <!-- 바닥 + 러그 -->
+      <polygon points="500,160 940,380 500,600 60,380" class="바닥"/>
+      <polygon points="500,300 760,430 500,560 240,430" class="러그"/>
+
+      <!-- 오른쪽 벽 포스터 -->
+      <g transform="translate(710,196) skewY(26.57)">
+        <rect x="-84" y="-48" width="168" height="96" rx="6" class="포스터"/>
+        <text x="0" y="-4" class="포스터글1">buen</text>
+        <text x="0" y="30" class="포스터글2">trabajo</text>
+      </g>
+      <!-- 왼쪽 벽 창문 -->
+      <g transform="translate(245,222) skewY(-26.57)">
+        <rect x="-72" y="-46" width="144" height="92" rx="6" class="창문"/>
+        <line x1="0" y1="-46" x2="0" y2="46" class="창틀"/>
+        <line x1="-72" y1="0" x2="72" y2="0" class="창틀"/>
+      </g>
+
+      <!-- 화분 둘 -->
+      <use href="#화분" transform="translate(140,392)"/>
+      <use href="#화분" transform="translate(866,396)"/>
+
+      <!-- 뒤쪽부터 그려야 앞엣것이 위로 옵니다 -->
+      <!-- 🐱 번역가 자리 (가운데 뒤) + 츄르 -->
+      <use href="#책상" transform="translate(500,300)"/>
+      <use href="#츄르" transform="translate(540,310)"/>
+
+      <!-- 🦉 조사원 자리 (왼쪽) + 책 -->
+      <use href="#책상" transform="translate(250,430)"/>
+      <use href="#책" transform="translate(270,446)"/>
+
+      <!-- 🔥 난로 (고양이와 앵무새 사이) -->
+      <use href="#난로" transform="translate(639,384)"/>
+
+      <!-- 🦜 지역전문가 자리 (오른쪽) + 마이크 -->
+      <use href="#책상" transform="translate(750,430)"/>
+      <use href="#마이크" transform="translate(770,446)"/>
+
+      <!-- 🐻 검수자 자리 (가운데 앞) + 마늘 -->
+      <use href="#책상" transform="translate(500,546)"/>
+      <use href="#마늘" transform="translate(520,562)"/>
+    </svg>
+
+    <div class="배우들" id="배우들"></div>
+
+    <p class="방이름">A LITTLE ROOM FOR BIG IDEAS</p>
+  </div>
+</section>
+
+<section class="기록판">
+  <h2>📜 회의록</h2>
+  <ol id="기록" class="기록"></ol>
+</section>
+
+<section class="결과판" id="결과판" hidden>
+  <h2>🏁 최종 결정</h2>
+  <pre id="결과"></pre>
+</section>
+
+<footer>
+  <span class="범례"><i class="점 일하는중"></i> 일하는 중</span>
+  <span class="범례"><i class="점 기다리는중"></i> 기다리는 중</span>
+  <span class="범례"><i class="점 쉬는중"></i> 쉬는 중</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
