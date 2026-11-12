@@ -2,3 +2,6 @@
 !.env.example
 __pycache__/
 *.pyc
+
+# 시험 결과는 깃에 올리되, 임시 파일은 제외
+__pycache__/
